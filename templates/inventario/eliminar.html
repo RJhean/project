@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %} {% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            <div class="panel-body table-responsive">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <h3>¿Desea eliminar el registro <span class=" label label-info">{{object.oficina}} {{object.cap_disco}}</span>?</h3>
+                    <button class="btn btn-danger" type="submit"> Si, eliminar </button>
+                    <a class="btn btn-primary" href="{% url 'inventary:listar' %}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

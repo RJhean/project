@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %} {% block content %}
+<div class="container">
+    <a class="btn btn-primary" href="{% url 'inventary:crear' %}"> <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Agregar</a>
+    <p>Inventario general de todos los equipos de cóputo de la Municipalidad Provincial de Moho.</p>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Oficina</th>
+                    <th>Usuario</th>
+                    <th>S.O.</th>
+                    <th style="max-width:80px; text-align:center; font-size: 12px;">Disco Duro (GB) </th>
+                    <th style="max-width:70px; text-align:center; font-size: 12px;">Memoria RAM (GB) </th>
+                    <th>Procesador</th>
+                    <th>Monitor</th>
+                    <th>Periféricos</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if object_list %} 
+                {% for inventario in object_list%}
+                <tr>
+                    <td>{{inventario.oficina}}</td>
+                    <td>{{inventario.nom_usuario}}</td>
+                    <td>{{inventario.sis_operativo}}</td>
+                    <td>{{inventario.cap_disco}}</td>
+                    <td>{{inventario.memoria}}</td>
+                    <td>{{inventario.procesador}}</td>
+                    <td>{{inventario.monitor}}</td>
+                    <td>{{inventario.perifericos}}</td>
+                    <td>{{inventario.estado}}</td>
+            
+                    <td style="align:center;" >
+                        <a href="{% url 'inventary:editar' inventario.id %}"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Editar"></span></a>
+                        <a href="{% url 'inventary:eliminar' inventario.id %}"> <span class="glyphicon glyphicon-trash" style="color: red;" data-toggle="tooltip" data-placement="top" title="Eliminar">
+                  
+                </span></a>
+                    </td>
+                </tr>
+                {% endfor %} {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<ul class="pager">
+    <li>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a> {% endif %}
+    </li>
+    <li>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a> {% endif %}
+    </li>
+</ul>
+{% endblock content %}

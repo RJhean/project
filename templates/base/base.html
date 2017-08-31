@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> {% block extrastatic %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title> {% block titlle %}Invetario|MPM{% endblock titlle %}</title>
+</head>
+
+<body>
+    <div class="row affix-row">
+        <div class="col-sm-3 col-md-2 affix-sidebar">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="visible-xs navbar-brand">Sidebar menu</span>
+                    </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav" id="sidenav01">
+                            <li class="active">
+                                <a href="#" data-toggle="collapse" data-target="#toggleDemo0" data-parent="#sidenav01" class="collapsed">
+                                    <h4 style="max-width:180px; text-align:center">
+          Municipalidad Provincial de Moho
+          <br>
+          </h4>
+                                    <div>
+                                        <h4 style="display: inline-block;">Bienvenido : </h4>
+                                        <h4 style="display: inline-block; color: #F08080;"><span style="color:#2F4F4F;" class="glyphicon glyphicon-user"> </span> {{user.username | title}}</h4>
+                                    </div>
+                                    </h5>
+                                </a>
+                            </li>
+                            <li><a href="{% url 'inventary:listar' %}" style="font-size: 16px"><span class="glyphicon glyphicon-list-alt"></span> Inventario</a></li>
+                            <li><a href="{% url 'users:logout' %}"><span class="glyphicon glyphicon-log-out" style="font-size: 16px"></span> Salir</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-10 affix-content">
+            <div class="container">
+                {% block header %}
+                <div class="page-header">
+                    <h3> Inventario </h3>
+                </div>
+                {% endblock header %} {% block content %}
+                <h1>content</h1> {% endblock content %}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block extrajs %} {% endblock %}
+</body>
+
+</html>
